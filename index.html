@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد عماد - رحلة إبداعية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom fonts for Arabic and a creative touch */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Changa:wght@600;700;800&family=Amiri:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif; /* Primary Arabic font */
+            background: linear-gradient(135deg, #f8f0ff 0%, #e0f2fe 100%); /* Soft, playful gradient */
+            color: #2d3748; /* Darker text for readability */
+            line-height: 1.8;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        h1, h2, h3 {
+            font-family: 'Changa', 'Cairo', sans-serif; /* Bold, impactful headings */
+            color: #312e81; /* Deep indigo for headings */
+        }
+        /* Custom card styling for a creative look */
+        .creative-card {
+            background-color: #ffffff;
+            border-radius: 2.5rem; /* Very rounded corners */
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.08); /* Pronounced shadow */
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth, bouncy transition */
+            border: 2px solid rgba(255, 255, 255, 0.9); /* White border for pop */
+            position: relative;
+            z-index: 1;
+        }
+        .creative-card:hover {
+            transform: translateY(-12px) scale(1.02); /* More dramatic lift and scale */
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.25), 0 15px 30px -8px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+        /* Section title with a playful underline */
+        .creative-section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            width: fit-content;
+        }
+        .creative-section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 100px; /* Wider, more prominent line */
+            height: 6px;
+            background: linear-gradient(to right, #6d28d9, #9333ea); /* Vibrant purple gradient */
+            border-radius: 3px;
+        }
+        /* Header gradient text */
+        .header-text-gradient {
+            background: linear-gradient(45deg, #6d28d9, #9333ea, #a855f7); /* Multi-color gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        /* Individual project item styling */
+        .project-item {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* Consistent with creative-card */
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex; /* Ensure flex for internal content */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: space-between; /* Push description to bottom if content is short */
+        }
+        .project-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15), 0 8px 15px -5px rgba(0, 0, 0, 0.1);
+        }
+        .project-item iframe {
+            width: 100%;
+            height: 400px; /* Standardized height for all embeds */
+            display: block;
+            border: none;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        .project-description {
+            padding: 1.5rem; /* More padding */
+            background-color: #f0f4f8; /* Lighter background */
+            font-size: 1rem;
+            color: #4a5568;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            text-align: center; /* Centered text */
+            flex-grow: 1; /* Allow description to take available space */
+            display: flex; /* Use flex to center text vertically if needed */
+            flex-direction: column;
+            justify-content: center;
+        }
+        .reels-placeholder {
+            width: 100%;
+            height: 400px; /* Consistent height with iframes */
+            background: linear-gradient(45deg, #a855f7, #6d28d9); /* Gradient background for placeholder */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            text-align: center; /* Centered text */
+        }
+        .reels-placeholder:hover {
+            background: linear-gradient(45deg, #9333ea, #5b21b6); /* Darker gradient on hover */
+        }
+        /* Removed img from reels-placeholder as per user request */
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(to right, #a855f7, #d946ef); /* Pinkish-purple gradient */
+            color: #ffffff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 9999px;
+            margin: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .skill-tag:hover {
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Creative Contact buttons */
+        .creative-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #6d28d9, #9333ea); /* Purple gradient */
+            color: #ffffff;
+            padding: 1rem 2.5rem; /* Larger buttons */
+            border-radius: 9999px;
+            font-weight: 800; /* Extra bold */
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Bouncy transition */
+            margin: 0.8rem;
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4); /* Stronger shadow */
+            min-width: 220px;
+            text-align: center;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .creative-contact-btn:hover {
+            transform: translateY(-7px) scale(1.05); /* More lift and scale */
+            box-shadow: 0 15px 35px rgba(109, 40, 217, 0.6);
+            background: linear-gradient(45deg, #5b21b6, #7e22ce); /* Darker on hover */
+        }
+        .creative-contact-btn svg {
+            margin-right: 1rem; /* More space for icon */
+            width: 32px; /* Larger icon */
+            height: 32px; /* Larger icon */
+        }
+        /* Subtle background patterns/elements */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e0f2fe 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .section-container {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        /* New creative separator style */
+        .creative-separator {
+            background: linear-gradient(to right, #f0f9ff, #a855f7, #6d28d9, #a855f7, #f0f9ff); /* Multi-color gradient */
+            color: #ffffff;
+            font-size: 2.25rem; /* Larger font */
+            font-weight: 800; /* Extra bold */
+            text-align: center;
+            padding: 2.5rem 1.5rem; /* Generous padding */
+            border-radius: 1.5rem; /* Rounded corners */
+            margin: 4rem auto; /* Center with more vertical margin */
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2), 0 8px 15px -5px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for pop */
+            line-height: 1.3;
+            max-width: 90%; /* Max width for responsiveness */
+        }
+
+        /* Subtitle for experience sections */
+        .experience-subtitle {
+            font-size: 1.25rem; /* Smaller than main title */
+            color: #6b7280; /* Gray color */
+            font-weight: 600; /* Semi-bold */
+            margin-top: 0.5rem; /* Space below main title */
+            display: block; /* Ensure it's on its own line */
+        }
+
+        /* Responsive grid adjustments for project items */
+        .grid {
+            display: grid;
+            gap: 2rem; /* Consistent gap for all grid layouts */
+        }
+        @media (max-width: 639px) { /* Small screens (sm) and below */
+            .grid-cols-1 {
+                grid-template-columns: 1fr;
+            }
+            .project-item {
+                width: auto; /* Let grid handle width */
+                margin: 0; /* Remove individual item margin, rely on grid gap */
+                max-width: 100%; /* Ensure it fills grid column */
+            }
+        }
+        @media (min-width: 640px) and (max-width: 1023px) { /* Medium screens (sm to lg) */
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .project-item {
+                width: auto; /* Let grid handle width */
+                margin: 0; /* Remove individual item margin, rely on grid gap */
+            }
+        }
+        @media (min-width: 1024px) { /* Large screens (lg) and above */
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .project-item {
+                width: auto; /* Let grid handle width */
+                margin: 0; /* Remove individual item margin, rely on grid gap */
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-5xl mx-auto bg-white p-6 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+        <div class="pattern-overlay"></div>
+
+        <header class="text-center mb-20 section-container">
+            <h1 class="text-6xl sm:text-7xl font-extrabold mb-6">
+                <span class="header-text-gradient">أحمد عماد</span>
+            </h1>
+            <p class="text-3xl sm:text-4xl font-bold text-gray-700 mb-8">صانع محتوى تسويقي إبداعي</p>
+            <p class="mt-4 text-gray-700 max-w-3xl mx-auto leading-relaxed text-xl">
+                يا صباح الفل أو مساء الخير "حسب ما بتقرا الكلام ده" أنا أحمد عماد، وصحابي بيقولولي يا عُمدة، صانع محتوى دماغه سم وبيحب الشغل اللي بيجيب نتيجة، تخصصي الأساسي في إدارة السوشيال ميديا والتسويق الرقمي، وكمان بظبط الحملات الإعلانية عشان تجيب أقصى استفادة. بصراحة كده، عندي قدرة ممتازة إني أعمل محتوى مش بس يخطف العين، لأ ده كمان بيحقق أهداف تسويقية على أرض الواقع وبيزود التفاعل والنمو الطبيعي للصفحات. ومتحمس دايماً إني أكتشف إزاي ممكن الذكاء الاصطناعي (AI) وقوة Storytelling يخلوا الناس تتفاعل أكتر مع أي براند، ونعمل تجارب كده متتنسيش
+            </p>
+        </header>
+
+        <section class="mb-20 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">مهماتي التسويقية الكبرى</h2>
+            <p class="text-center text-gray-600 text-lg mb-12">هنا أشاركك أبرز المغامرات والحملات اللي خضتها، وإزاي جبنا فيها أهداف جامدة</p>
+
+            <div class="creative-card p-8 mb-12">
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4">أكاديمية غيث - رحلة تحفيظ القرآن الرقمية</h3>
+                <p class="text-gray-500 text-base mb-4">أكتوبر 2024 - حتى الآن | أكاديمية لتحفيظ القرآن الكريم عبر الإنترنت</p>
+                <p class="text-gray-700 mb-3 text-lg">
+                    <strong class="text-indigo-600">الهدف:</strong> نشر رسالة القرآن وجذب الطلاب من كل مكان.
+                </p>
+                <p class="text-gray-700 mb-6 text-lg">
+                    <strong class="text-indigo-600">دوري:</strong> إدارة منصات التواصل الاجتماعي من فكرة المحتوى وحتى التنفيذ، بما في ذلك كتابة المنشورات، تصميم المرئيات، وتحرير الفيديوهات. قمت بإنشاء وتحسين إعلانات Meta (فيسبوك وإنستغرام) لاستهداف الجماهير في مصر والعالم العربي. طبقت استراتيجيات تسويقية متنوعة، بما في ذلك التصاميم المخصصة، الريلز الجذابة، والتعليقات الصوتية المولدة بالذكاء الاصطناعي لتعزيز جاذبية المحتوى والوصول.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8 text-lg">
+                    <li><strong class="text-green-600">الإنجازات الرئيسية:</strong></li>
+                    <li>ساهمت في تحقيق 7 مليون مشاهدة للمحتوى وتوليد أكثر من 100,000 جنيه مصري مبيعات خلال ستة أشهر، بميزانية إعلانية إجمالية تقل عن 20,000 جنيه مصري.</li>
+                </ul>
+
+                <h4 class="text-2xl font-semibold text-indigo-600 mb-4">نماذج من المحتوى:</h4>
+                <p class="text-gray-600 text-sm mb-6">
+                    شكلنا نسينا ندفع فاتورة ظهور المحتوى هنا! لو مفيش حاجة باينة، دوس على اللينك وهتلاقي الدنيا منورة في المصدر الأصلي.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FGhaithAcademyEgy%2Fposts%2Fpfbid02MWyTUPLfEzFiDqSdb2KdVy2LsNfXQ7WQDXsHtWB5MEerq3kYEZJcTyqGc5kmya6Ml&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>يهدف هذا المنشور إلى جذب طلاب جدد من خلال التركيز على القيمة الروحية لحفظ القرآن وتقديم حافز مباشر للتسجيل بخصم مدى الحياة.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/GhaithAcademyEgy/posts/pfbid02MWyTUPLfEzFiDqSdb2KdVy2LsNfXQ7WQDXsHtWB5MEerq3kYEZJcTyqGc5kmya6Ml" target="_blank" class="text-blue-600 hover:underline">مشاهدة مباشرة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FGhaithAcademyEgy%2Fposts%2Fpfbid02VqFDwNFQvYmH1TBC2z7MUdgFdvCBhLE3fGwxQPpWKGxGXMXgW5j7BaP7UgTNonZVl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>يسعى هذا المنشور إلى زيادة الاشتراكات الشهرية من خلال إبراز سهولة الحفظ من المنزل وتقديم خيارات باقات مرنة بأسعار تنافسية.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/GhaithAcademyEgy/posts/pfbid02VqFDwNFQvYmH1TBC2z7MUdgFdvCBhLE3fGwxQPpWKGxGXMXgW5j7BaP7UgTNonZVl" target="_blank" class="text-blue-600 hover:underline">مشاهدة مباشرة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FGhaithAcademyEgy%2Fvideos%2F9145818428819714%2F&show_text=false&width=267&t=0" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                        <div class="project-description">
+                            <p>يهدف هذا الفيديو إلى بناء الثقة والمصداقية من خلال عرض تجربة حقيقية وملهمة لأحد الطلاب، مما يشجع أولياء الأمور على تسجيل أطفالهم.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/GhaithAcademyEgy/videos/9145818428819714/" target="_blank" class="text-blue-600 hover:underline">مشاهدة مباشرة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <a href="https://www.facebook.com/share/r/16pNsqJSvN/" target="_blank" class="reels-placeholder">
+                            <span class="text-white">فيسبوك زعلان والبوست مش ظاهر، دوس على اللينك وشوفه هناك.</span>
+                        </a>
+                        <div class="project-description">
+                            <p>يهدف هذا الريلز إلى استهداف أولياء الأمور خلال فترة الإجازات، بتقديم حلول مفيدة لاستغلال وقت الأبناء مع حوافز التسجيل.</p>
+                            <p class="text-center text-sm mt-2">
+                                <a href="https://www.facebook.com/share/r/16pNsqJSvN/" target="_blank" class="text-blue-600 hover:underline">انقر للمشاهدة</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FGhaithAcademyEgy%2Fposts%2Fpfbid04szeUqQDbnyQNNVZzkPPdRy1LLMkpQgUGWNafbAS9NkQovhrUA3awiwcmAWSdFnFl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>يسعى هذا المنشور إلى تعزيز سمعة الأكاديمية وجذب عملاء جدد من خلال عرض شهادات حقيقية وملهمة من الطلاب وأولياء الأمور.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/GhaithAcademyEgy/posts/pfbid04szeUqQDbnyQNNVZzkPPdRy1LLMkpQgUGWNafbAS9NkQovhrUA3awiwcmAWSdFnFl" target="_blank" class="text-blue-600 hover:underline">اقرأ ما يقولون</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="creative-card p-8 mb-12">
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4">BugHub - حكايتنا مع البرمجة</h3>
+                <p class="text-gray-500 text-base mb-4">مايو 2024 - يوليو 2024 | فريق حلول تكنولوجيا المعلومات والمسابقات</p>
+                <p class="text-gray-700 mb-3 text-lg">
+                    <strong class="text-indigo-600">كان هدفنا:</strong> نبني تواجد قوي ومختلف لـBugHub، ونخلي اسمنا كده على كل لسان في عالم البرمجة.
+                </p>
+                <p class="text-gray-700 mb-6 text-lg">
+                    <strong class="text-indigo-600">دوري في القصة دي كان إيه؟</strong> أنا والتيم اللي معايا، اللي بجد كانوا رجالة المهمات الصعبة، كنا احنا اللي ماسكين صفحة BugHub على لينكد إن. من أول ما تيجي لنا فكرة كده مختلفة، لحد ما نكتب البوستات ونعمل تصميماتها اللي بتخطف العين، كل ده كان شغلنا عشان نطلع محتوى يسيب بصمة.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8 text-lg">
+                    <li><strong class="text-green-600">إنجازاتنا اللي نفرح بيها:</strong></li>
+                    <li>صممت ونفذت 12 بوست في شهر واحد بس، وحافظت على تفاعل مستمر وصورة براند واضحة ومميزة.</li>
+                    <li>حققنا أكتر من 7,000 ظهور طبيعي في شهر واحد، يعني ولا دفعنا مليم ولا أي إعلانات مدفوعة وده كله كان بتفاعل وتعليقات "تفرح القلب" من الجمهور.</li>
+                </ul>
+                <h4 class="text-2xl font-semibold text-indigo-600 mt-4 mb-3">لقطات من المغامرة:</h4>
+                <p class="text-gray-600 text-sm mb-6">
+                    لو حاجة ماطلعتش هنا، دوس على اللينك وخد راحتك.. لينكدان مش بيحب يشارك كل حاجة معانا 😅
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7219279403426476032" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست الإطلاق الرسمي لتيم BugHub، بنعلن فيه عن خدماتنا وبداية مغامرتنا التقنية. (البداية دايماً مثيرة)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7219279403426476032" target="_blank" class="text-blue-600 hover:underline">اكتشف من نحن</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7221103964983853057" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست حماسي عن مشاركتنا في مسابقة Gemini API، بندعو فيه الجمهور يدعمنا في المنافسة العالمية دي. (نحو النجومية)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7221103964983853057" target="_blank" class="text-blue-600 hover:underline">شجعنا</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7226170499683287040" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست تشويقي بيدعو المتابعين يخمنوا ويستنوا إنجاز جديد لينا. (يا ترى إيه اللي مستخبي)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7226170499683287040" target="_blank" class="text-blue-600 hover:underline">توقع معنا</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7229106483899047936" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>إعلان عن إنجازنا الكبير: خلصنا لعبة "What If" لمسابقة Gemini API. (قدرنا نعملها)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7229106483899047936" target="_blank" class="text-blue-600 hover:underline">شوف اللعبة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7232430314650828801" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيسلط الضوء على إبداع تيم UI/UX في تصميم لعبتنا، وبيبرز الأدوات والمجهودات. (الفن في التفاصيل)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7232430314650828801" target="_blank" class="text-blue-600 hover:underline">تعرف على المصممين</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7237434916982972416" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>دعوة للجمهور يصوتوا للعبتنا في مسابقة Google AI. (صوتك هيفرق كتير)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7237434916982972416" target="_blank" class="text-blue-600 hover:underline">صوت دلوقتي</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="creative-card p-8 mb-12">
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4">Sercodev Academy - حملة "أبطال البرمجة" الخارقة</h3>
+                <p class="text-gray-500 text-base mb-4">أكتوبر 2024 - نوفمبر 2024 | أكاديمية بتعلم البرمجة من الآخر</p>
+                <p class="text-gray-700 mb-3 text-lg">
+                    <strong class="text-indigo-600">الهدف من الحكاية دي:</strong> كنا عايزين نخلّي عالم البرمجة، اللي ساعات بيبان معقد ده، أسهل من شرب الماية، ونجذب ليه أبطال ومواهب المستقبل.
+                </p>
+                <p class="text-gray-700 mb-6 text-lg">
+                    <strong class="text-indigo-600">دوري في المهمة دي كان إيه؟</strong> أنا والتيم اللي معايا، اللي هما نفس رجالة المهمات الصعبة اللي اشتغلنا سوا قبل كده، كنا احنا اللي ورا حملة تسويقية عبارة عن 7 بوستات. الفكرة كانت إننا نحول مفاهيم البرمجة الصعبة لقصص ممتعة وشيقة. تخيلنا الحملة دي كأنها مغامرة في عالم Marvel، وكل مجال في البرمجة هو قوة خارقة بيمتلكها بطل مختلف ومميز.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8 text-lg">
+                    <li><strong class="text-green-600">إنجازاتنا اللي لازم تتحكي:</strong></li>
+                    <li>نفذت الحملة كلها في شهر واحد بس، والحمد لله جابت 100% تفاعل طبيعي من غير ما ندفع جنيه واحد على إعلانات.</li>
+                </ul>
+                <h4 class="text-2xl font-semibold text-indigo-600 mt-4 mb-3">لقطات من المغامرة:</h4>
+                <p class="text-gray-600 text-sm mb-6">
+                    لو البوست عامل فيها تقيل ومش راضي يظهر هنا، دوس على اللينك وهاته من قفاه على فيسبوك.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid02umxiFFpUEMm48H1pwRuKBKdzonU48s8ghdjLWXYnYG2ZznomcquYbkU8M8bWeuZrl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست البداية للحملة، بيثير الفضول عن علاقة البرمجة بالأبطال الخارقين، وبيمهد للمغامرة الكبيرة.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid02umxiFFpUEMm48H1pwRuKBKdzonU48s8ghdjLWXYnYG2ZznomcquYbkU8M8bWeuZrl" target="_blank" class="text-blue-600 hover:underline">ابدأ المغامرة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid0DSgXUZwDpqw6RPEn66fhRbtGzLRyzVaCrP4hjp7fFZ23UfDLTpnXGNouep6LygjMl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيشرح مفهوم UI/UX Design، وبيشبه مصمميه بـ "واندا ماكسيموف" عشان قدرتهم يعملوا تجارب ساحرة للمستخدمين.</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid0DSgXUZwDpqw6RPEn66fhRbtGzLRyzVaCrP4hjp7fFZ23UfDLTpnXGNouep6LygjMl" target="_blank" class="text-blue-600 hover:underline">اكتشف السحر</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid027ksDwHjgigFgiBikcvV8WzTjMRsmHQ8R1DdnKbZtjinsxpVXHZ727ekU3ZHZhuhyl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيوضح أقسام تطوير الويب (Frontend و Backend)، وبيشبه الـ Frontend بـ Black Widow والـ Backend بـ Captain America. (تيم الأحلام)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid027ksDwHjgigFgiBikcvV8WzTjMRsmHQ8R1DdnKbZtjinsxpVXHZ727ekU3ZHZhuhyl" target="_blank" class="text-blue-600 hover:underline">تعرف على الأبطال</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid0c1TR1LgMQZcXnSAUPeba5qW1JmMycJmbdKTHJjAeJTDZ4xgBNM1HYby7zfgVCAgHl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيركز على دور مطور الواجهة الأمامية (Frontend)، وبيشبه مهاراته بمهارات Black Widow في بناء واجهات جذابة وسلسة. (واجهة قوية)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid0c1TR1LgMQZcXnSAUPeba5qW1JmMycJmbdKTHJjAeJTDZ4xgBNM1HYby7zfgVCAgHl" target="_blank" class="text-blue-600 hover:underline">كون بطل الواجهة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid0u7c4n1t9prGVbdcbds1vYo4zBbwmzi33MVZwAqCwHEGtNga8cMo5yBcBxyUwgFul&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيوضح دور الـ Backend في إدارة البيانات والأمان، وبيشبهه بـ Captain America اللي بيقود من ورا الكواليس. (القوة الخفية)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid0u7c4n1t9prGVbdcbds1vYo4zBbwmzi33MVZwAqCwHEGtNga8cMo5yBcBxyUwgFul" target="_blank" class="text-blue-600 hover:underline">اكتشف القوة</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid0q872EvQdW7Adg5XSajBNWNoAFiuXkAtLTs1N81jDUkJrsUv1qxew2yjxEfasSAPZl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيقدم Flutter كأداة قوية لتطوير تطبيقات الموبايل اللي بتشتغل على كذا نظام، وبيشبهها بـ "دكتور سترينج" عشان بيقدر يتنقل بين الأكوان. (سحر التطبيقات)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid0q872EvQdW7Adg5XSajBNWNoAFiuXkAtLTs1N81jDUkJrsUv1qxew2yjxEfasSAPZl" target="_blank" class="text-blue-600 hover:underline">انطلق في عالم Flutter</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid07WnB2NGvPcqCCuwS4izpBkSa385mbTULmahVWXTdGZmjMqUo4seWnHN1ApZwewK3l&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيعرف بالتعلم الآلي (Machine Learning)، وبيشبهه بـ "فيجن" عشان قدرته على التحليل والفهم السريع. (ذكاء خارق)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid07WnB2NGvPcqCCuwS4izpBkSa385mbTULmahVWXTdGZmjMqUo4seWnHN1ApZwewK3l" target="_blank" class="text-blue-600 hover:underline">استكشف الذكاء</a></p>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsercodevacademy%2Fposts%2Fpfbid02iwTVe8xbJdkrzKZCQx9KweY1XLchH7b1ueaJuTxymJ9919nAPbmLNLTPy7s4QrRCl&show_text=true&width=500" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيبرز دور علم البيانات (Data Science) في تحويل البيانات الضخمة لرؤى قوية، وبيشبهه بـ "ثور" وقدرته على التحكم في البرق. (قوة البيانات)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.facebook.com/sercodevacademy/posts/pfbid02iwTVe8xbJdkrzKZCQx9KweY1XLchH7b1ueaJuTxymJ9919nAPbmLNLTPy7s4QrRCl" target="_blank" class="text-blue-600 hover:underline">أطلق العنان للبيانات</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <h2 class="creative-separator">لو فاكر إن كل شغلي محتوى بس، يبقى فاتك كتير تعالى بقى أحكيلك عن مغامراتي اللي فاتت:</h2>
+
+        <section class="mb-16 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">
+                خبرة في التصميم الجرافيكي
+                <span class="experience-subtitle mt-2 text-gray-600">(شغل سنين طويلة.. من وأنا لسه صغنون)</span>
+            </h2>
+            <div class="creative-card p-8">
+                <p class="text-gray-700 mb-6 text-lg">
+                    من 2018 كده ولحد 2021، يعني من وأنا لسه في أولى ثانوي (أو حوالي 15 سنة كدة)، دخلت في عالم التصميم الجرافيكي ده. بصراحة، كنت لسه بشق طريقي كده وعلى قدي شوية في البداية، بس البداية دي بكل اللي فيها هي اللي وصلتني للمرحلة اللي أنا فيها دلوقتي. هناك بقى طورت مهاراتي في إني أطلع تصاميم بصرية "تجبّر الخاطر" وتوصل الرسالة في ثانية. الخبرة دي شملت إني أعمل حاجات دعائية للفعاليات، وكمان هويات كاملة لشركات وعلامات تجارية.
+                </p>
+                <h4 class="text-2xl font-semibold text-indigo-600 mb-4">أعمالي الفنية:</h4>
+                <p class="text-gray-600 text-sm mb-6">
+                    روابط بيهانس مظهرتش؟ عادي يا عم، فيسبوك مش أحسن منه في حاجة! دوس على اللينك وخد راحتك. 😄
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-item">
+                        <iframe src="https://www.behance.net/embed/project/94365821?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" scrolling="no" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                        <div class="project-description">
+                            <p>تصميمات بصرية لحفل TEDxMenouf 2019. (جذب الأنظار بلمسة فنية)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.behance.net/gallery/94365821/TEDxMenouf-2019-Diamond" target="_blank" class="text-blue-600 hover:underline">شاهد التصميم</a></p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <iframe src="https://www.behance.net/embed/project/93784443?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" scrolling="no" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                        <div class="project-description">
+                            <p>هوية بصرية متكاملة لأكاديمية زاد (شعار، لافتات). (بناء علامة تجارية من الصفر)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.behance.net/gallery/93784443/Logo-banner-and-roll-up-design-for-zad-academy" target="_blank" class="text-blue-600 hover:underline">اكتشف الهوية</a></p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <iframe src="https://www.behance.net/embed/project/89973389?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" scrolling="no" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                        <div class="project-description">
+                            <p>تصميمات ترويجية لحدث "صناع الحياة" لطلاب الجامعة الجدد. (إلهام الأجيال)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.behance.net/gallery/89973389/Life-Makers-First-year-at-the-university-Event" target="_blank" class="text-blue-600 hover:underline">انظر للعمل</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">رحلتي في عالم البرمجة</h2>
+            <div class="creative-card p-8">
+                <p class="text-gray-700 mb-6 text-lg">
+                    من يناير 2024 ولحد دلوقتي، دخلت في رحلة كده ممتعة كـ"مطور Flutter". يعني بقيت أبني تطبيقات موبايل تشتغل على أي جهاز تيجي في إيدك. بصراحة، البرمجة دي مش مجرد دراسة ليا، دي "شغفي الحقيقي" اللي فتحلي أبواب كتير وخلاّني أعمل البورتفوليو اللي أنت شايفه ده. أنا هدفي أحوّل أي فكرة تيجي في دماغي لحاجة موجودة على أرض الواقع، وأعمل برامج قوية وسهلة في الاستخدام.
+                    وعلى فكرة، من الشغل اللي عملته تطبيق "What If?"، اللي بيتخيل سيناريوهات مختلفة كانت ممكن تحصل في الحياة. <p class="text-purple-700 font-bold italic text-xl mt-4 mb-4">"ماذا لو قبلتوني معاكوا في الشركة؟! ... هحبكوا أوي 😂"</p>
+                </p>
+                <h4 class="text-2xl font-semibold text-indigo-600 mb-4">محطات في رحلة التطوير:</h4>
+                <p class="text-gray-600 text-sm mb-6">
+                    لو المحتوى اختفى فجأة، متتخضش! (دوس على اللينك وهتلاقيه مستنيك هناك).
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7187177208426205184" height="400" width="504" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+                        <div class="project-description">
+                            <p>احتفال بتخرجي ضمن دفعة مطوري Flutter، لحظة فخر تبرز إنجازاتنا كخريجين مستعدين للمساهمة في هذا المجال. (تخرجنا... والمستقبل لنا)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/feed/update/urn:li:share:7187177208426205184" target="_blank" class="text-blue-600 hover:underline">شاهد الاحتفال</a></p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7229755036359094272" height="400" width="504" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+                        <div class="project-description">
+                            <p>بوست بيعرض سيرتي الذاتية كمطور Flutter، وبيبرز مهاراتي وخبراتي في المجال ده كجزء من رحلتي المهنية. (سيرتي الذاتية... بنكهة Flutter)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/posts/ahmed-emad-eldeen-14_-thats-my-resume-as-a-flutter-developer-activity-7229755036359094272-i6uN" target="_blank" class="text-blue-600 hover:underline">اكتشف مسيرتي</a></p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7198011344279760896" height="400" width="504" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+                        <div class="project-description">
+                            <p>مشروع تطبيق تجارة إلكترونية "Zen Cart Market"، بيعرض مهاراتي في بناء حلول تجارية قوية باستخدام Flutter. (سوقك بين إيديك)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7198011344279760896" target="_blank" class="text-blue-600 hover:underline">تصفح المشروع</a></p>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7205712396563161088" height="400" width="504" frameborder="0" scrolling="no" allowfullscreen="" title="Embedded post"></iframe>
+                        <div class="project-description">
+                            <p>بوست تشويقي لتطبيق هيجمع بين كرة القدم والذكاء الاصطناعي، وبيبرز التفكير المبتكر في دمج Flutter مع تقنيات الذكاء الاصطناعي. (المستقبل في الملعب)</p>
+                            <p class="text-center text-sm mt-2"><a href="https://www.linkedin.com/posts/ahmed-emad-eldeen-14_-flutter-whatabrif-activity-7205712396563161088-8a_6" target="_blank" class="text-blue-600 hover:underline">شوف التشويق</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">التعليم</h2>
+            <div class="creative-card p-8">
+                <p class="text-gray-700 text-lg mb-6">هنا حيث بدأت رحلتي الأكاديمية في عالم المعرفة:</p>
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-indigo-700">بكالوريوس علوم الحاسب</p>
+                    <p class="text-gray-700 text-lg">مدينة الثقافة والعلوم، 6 أكتوبر، الجيزة</p>
+                    <p class="text-gray-500 text-base">سبتمبر 2021 - حتى الآن</p>
+                </div>
+
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4 mt-8">المهارات</h3>
+                <p class="text-gray-700 text-lg mb-6">دي الأدوات والقدرات اللي عندي عشان أعمل محتوى وأحل أي تحديات:</p>
+                <div class="flex flex-wrap justify-center">
+                    <span class="skill-tag">Content Writing</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Storytelling</span>
+                    <span class="skill-tag">Social Media Management</span>
+                    <span class="skill-tag">Meta Ads</span>
+                    <span class="skill-tag">Graphic Design</span>
+                    <span class="skill-tag">AI-powered Marketing</span>
+                    <span class="skill-tag">Creativity</span>
+                    <span class="skill-tag">Teamwork</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Creative Campaigns</span>
+                    <span class="skill-tag">Programming</span>
+                    <span class="skill-tag">Digital Marketing</span>
+                    <span class="skill-tag">Problem-Solving</span>
+                </div>
+
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4 mt-8">المنظمات</h3>
+                <p class="text-gray-700 text-lg mb-6">المحطات اللي صقلت مهاراتي وقوت روح التيم عندي:</p>
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-indigo-700">TEDxMenouf</p>
+                    <p class="text-gray-700 text-lg">مصمم جرافيك</p>
+                    <p class="text-gray-500 text-base">أغسطس 2019 - نوفمبر 2021</p>
+                </div>
+                <div>
+                    <p class="text-xl font-semibold text-indigo-700">Ghaith Academy</p>
+                    <p class="text-gray-700 text-lg">مدير حساب</p>
+                    <p class="text-gray-500 text-base">أكتوبر 2024 - حتى الآن</p>
+                </div>
+
+                <h3 class="text-3xl font-semibold text-indigo-700 mb-4 mt-8">الشهادات</h3>
+                <p class="text-gray-700 text-lg mb-6">دي الدروع والمهارات المعتمدة اللي حصلت عليها في رحلتي:</p>
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-indigo-700">Advertising with Meta</p>
+                    <p class="text-gray-700 text-lg">اكتسبت خبرة عملية في تحليل أداء الإعلانات، استكشاف الأخطاء وإصلاحها، وتحسين الاستراتيجيات لزيادة التفاعل والنتائج.</p>
+                    <p class="text-gray-500 text-base">يونيو 2024 - أغسطس 2024</p>
+                </div>
+                <div class="mb-6">
+                    <p class="text-xl font-semibold text-indigo-700">Graphic Design</p>
+                    <p class="text-gray-700 text-lg">برنامج تدريبي متخصص في أساسيات ومبادئ التصميم الجرافيكي، مع التركيز على الأدوات والتقنيات الحديثة.</p>
+                    <p class="text-gray-500 text-base">سبتمبر 2019 - يناير 2020</p>
+                </div>
+                <div>
+                    <p class="text-xl font-semibold text-indigo-700">Training program for Social Media</p>
+                    <p class="text-gray-700 text-lg">برنامج تدريبي مكثف بيركز على استراتيجيات إدارة المحتوى والتفاعل على منصات التواصل الاجتماعي عشان يقوي الوجود الرقمي.</p>
+                    <p class="text-gray-500 text-base">سبتمبر 2019 - أكتوبر 2019</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">اللغات</h2>
+            <div class="creative-card p-8">
+                <p class="text-xl text-gray-700"><strong class="text-indigo-600">العربية:</strong> اللغة الأم</p>
+                <p class="text-xl text-gray-700"><strong class="text-indigo-600">الإنجليزية:</strong> إتقان احترافي</p>
+            </div>
+        </section>
+
+        <section class="mb-16 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">الاهتمامات</h2>
+            <div class="creative-card p-8 flex flex-wrap justify-center">
+                <span class="skill-tag">Advertising</span>
+                <span class="skill-tag">Brand Storytelling</span>
+                <span class="skill-tag">Creative Storytelling</span>
+                <span class="skill-tag">AI in Marketing</span>
+                <span class="skill-tag">Content Creation</span>
+                <span class="skill-tag">Programming</span>
+                <span class="skill-tag">Digital Marketing</span>
+                <span class="skill-tag">Problem-Solving</span>
+            </div>
+        </section>
+
+        <section class="text-center mt-20 p-8 bg-gradient-to-r from-purple-600 to-fuchsia-700 rounded-3xl shadow-xl section-container">
+            <h2 class="text-4xl font-bold text-white mb-8">هل أنت مستعد لمغامرة جديدة؟ يلا بينا نتكلم!</h2>
+            <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+                لو بتدور على شريك مبدع يضيف لمسة سحرية لمشاريعك، أو عندك فكرة جامدة محتاجة اللي يحولها لحقيقة، متترددش تتواصل معايا. يلا بينا نعمل حاجة مذهلة سوا!
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:ahmedemadeldeen0@gmail.com" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v7a2 2 0 002 2h14a2 2 0 002-2v-7m-18 0h18"></path></svg>
+                    البريد الإلكتروني
+                </a>
+                <a href="tel:+201013020660" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.135a11.042 11.042 0 005.516 5.516l1.135-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    رقم الهاتف
+                </a>
+                <a href="https://www.linkedin.com/in/ahmed-emad-eldeen-14-/" target="_blank" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.381 1.11-2.5 2.48-2.5s2.48 1.119 2.48 2.5zM.02 24h4.96V8h-4.96V24zM9.54 8c-1.32 0-2.28.79-2.73 1.58V8H4.98v16h4.96v-8.3c0-2.26 1.19-3.79 3.39-3.79 2.11 0 3.38 1.53 3.38 3.79V24h4.96v-8.7c0-4.7-2.9-6.8-6.7-6.8-3.15 0-4.7 2.1-5.5 3.5z"></path></svg>
+                    ملفي على LinkedIn
+                </a>
+                <a href="https://www.behance.net/omdaa" target="_blank" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12c0 5.249 4.251 9.5 9.5 9.5s9.5-4.251 9.5-9.5-4.251-9.5-9.5-9.5-9.5 4.251-9.5 9.5zm19.5 0c0 4.14-3.36 7.5-7.5 7.5s-7.5-3.36-7.5-7.5 3.36-7.5 7.5-7.5 7.5 3.36 7.5 7.5zM12 7.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5zm0 2.5c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2z"></path></svg>
+                    أعمالي على Behance
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
