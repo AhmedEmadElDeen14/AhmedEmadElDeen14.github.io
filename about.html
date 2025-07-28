@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد عماد - قصتي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Changa:wght@600;700;800&family=Amiri:wght@400;700&display=swap');
+
+        /* Global Reset and Body Styles */
+        html,
+        body {
+            overflow-x: hidden;
+            /* Ensure no horizontal scrollbar */
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f8f0ff 0%, #e0f2fe 100%);
+            color: #2d3748;
+            line-height: 1.8;
+        }
+
+        /* Webkit Scrollbar Styling (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            /* Width of the vertical scrollbar */
+            background-color: transparent;
+            /* Makes the scrollbar track transparent */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(109, 40, 217, 0.4);
+            /* Semi-transparent purple thumb */
+            border-radius: 10px;
+            border: 2px solid transparent;
+            /* Prevents border from showing outside of scrollbar */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(109, 40, 217, 0.7);
+            /* Darker on hover */
+        }
+
+        /* Firefox Scrollbar Styling */
+        html {
+            scrollbar-width: thin;
+            /* "auto", "thin", or "none" */
+            scrollbar-color: rgba(109, 40, 217, 0.4) transparent;
+            /* thumb track */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Changa', 'Cairo', sans-serif;
+            color: #312e81;
+        }
+
+        .creative-card {
+            background-color: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .creative-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.25), 0 15px 30px -8px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        .creative-section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .creative-section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(to right, #6d28d9, #9333ea);
+            border-radius: 3px;
+        }
+
+        .header-text-gradient {
+            background: linear-gradient(45deg, #6d28d9, #9333ea, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e0f2fe 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .section-container {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        /* Timeline specific styles using Flexbox */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            /* Max width for the timeline content */
+            margin: 0 auto;
+            padding: 1rem 0;
+            display: flex;
+            /* Make timeline a flex container */
+            flex-direction: column;
+            /* Stack items vertically */
+            align-items: center;
+            /* Center items visually, or align based on flex-start/end for columns */
+        }
+
+        .timeline::after {
+            /* The central vertical line - IMPROVED STYLE */
+            content: '';
+            position: absolute;
+            width: 10px;
+            /* Wider line */
+            background: linear-gradient(to bottom, #9333ea, #6d28d9);
+            /* Gradient for the line */
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            /* Position the line in the center */
+            transform: translateX(-50%);
+            /* Adjust for line's own width to be perfectly centered */
+            z-index: 0;
+            /* Ensure it's behind content cards */
+            border-radius: 5px;
+            /* Rounded ends for the line */
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+            /* Subtle glow */
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            /* Keep relative for pseudo-elements inside */
+            background-color: inherit;
+            width: 100%;
+            /* Default to full width for flex item on small screens */
+            margin-bottom: 30px;
+            z-index: 1;
+            box-sizing: border-box;
+            /* Ensures padding/border are included in width */
+        }
+
+        /* Specific styles for left and right items in the timeline (for large screens) */
+        .left {
+            align-self: flex-start;
+            /* Aligns item to the start (left) of the flex container */
+            width: 50%;
+            /* Takes up 50% width */
+            margin-right: auto;
+            /* Pushes content to the left */
+            margin-left: 0;
+            /* Ensure no unwanted left margin */
+        }
+
+        .right {
+            align-self: flex-end;
+            /* Aligns item to the end (right) of the flex container */
+            width: 50%;
+            /* Takes up 50% width */
+            margin-left: auto;
+            /* Pushes content to the right */
+            margin-right: 0;
+            /* Ensure no unwanted right margin */
+        }
+
+        /* Timeline Dot (Circle) and Date Positioning */
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #6d28d9;
+            border: 4px solid #f8f0ff;
+            border-radius: 50%;
+            top: 15px;
+            /* Aligns with the top of the content card (adjust as needed) */
+            z-index: 3;
+            /* Higher z-index to be on top of line and text */
+            display: flex;
+            /* Use flex to center date */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left .timeline-dot {
+            right: -17px;
+            /* Position for left items, relative to their container's right edge */
+            left: auto;
+        }
+
+        .right .timeline-dot {
+            left: -16px;
+            /* Position for right items, relative to their container's left edge */
+            right: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            /* Position relative to .timeline-dot */
+            background-color: #6d28d9;
+            /* Same as dot background */
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 9999px;
+            /* Pill shape */
+            font-weight: 700;
+            font-size: 0.9rem;
+            /* Smaller to fit */
+            white-space: nowrap;
+            /* Prevent date from wrapping */
+            z-index: 4;
+            /* Above the dot */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            top: 50%;
+            /* Vertically center relative to the dot's height */
+            transform: translateY(-50%);
+            /* Adjust to truly center vertically */
+        }
+
+        .left .timeline-date {
+            right: calc(100% + 10px);
+            /* Position to the left of the dot */
+            left: auto;
+        }
+
+        .right .timeline-date {
+            left: calc(100% + 10px);
+            /* Position to the right of the dot */
+            right: auto;
+        }
+
+        /* Pseudo-elements for the arrows pointing to the line */
+        .timeline-container::before {
+            /* Common style for the arrow pointing to the line */
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            /* Adjust to align with arrow base */
+            width: 0;
+            z-index: 1;
+            border: medium solid white;
+            /* Base arrow style */
+        }
+
+        .left::before {
+            /* Arrow for left containers (points right, from its right edge) */
+            right: 30px;
+            left: auto;
+            border-width: 10px 0 10px 10px;
+            /* Points right */
+            border-color: transparent transparent transparent white;
+        }
+
+        .right::before {
+            /* Arrow for right containers (points left, from its left edge) */
+            left: 30px;
+            right: auto;
+            border-width: 10px 10px 10px 0;
+            /* Points left */
+            border-color: transparent white transparent transparent;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Specific styles for the image placeholder */
+        .timeline-image-placeholder {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            /* Use aspect-ratio for precise 2:3 sizing */
+            background-color: #eee;
+            /* Placeholder background */
+            border-radius: 1rem;
+            display: flex;
+            /* To center placeholder text if no image */
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border: 2px dashed #a855f7;
+            position: relative;
+            overflow: hidden;
+            /* Crucial to clip image if it overflows */
+        }
+
+        .timeline-image-placeholder img {
+            /* Styles for the actual image inside */
+            position: absolute;
+            /* Position absolutely to fill the placeholder */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Fill the container, maintaining aspect ratio (may crop) */
+            border-radius: 1rem;
+            /* Apply border-radius to the image itself */
+        }
+
+        /* Style for the placeholder text - this should be removed when image is added */
+        .timeline-image-placeholder p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+        }
+
+        /* Responsive timeline - for screens up to 768px */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                /* Shift line to the left for single column */
+                left: 31px;
+                transform: translateX(0);
+                /* Reset transform */
+            }
+
+            .timeline-container,
+            .left,
+            .right {
+                /* All items become full width and align to left column */
+                width: 100%;
+                padding-left: 70px;
+                /* Adjust content padding */
+                padding-right: 25px;
+                align-self: flex-start;
+                /* Align all to left for single column */
+                margin-left: 0;
+                /* Reset margins */
+                margin-right: 0;
+                /* Reset margins */
+            }
+
+            .timeline-container::before {
+                /* Arrow position for single column */
+                left: 60px;
+                right: auto;
+                border-width: 10px 10px 10px 0;
+                /* Arrow points left from text */
+                border-color: transparent white transparent transparent;
+            }
+
+            .timeline-dot {
+                /* Dot position for single column */
+                left: 15px;
+                right: auto;
+            }
+
+            .timeline-date {
+                /* Date position for single column (always to the right of the dot) */
+                left: calc(100% + 10px);
+                right: auto;
+                transform: translateY(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto bg-white p-6 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+        <div class="pattern-overlay"></div>
+
+        <header class="text-center mb-20 section-container">
+            <h1 class="text-6xl sm:text-7xl font-extrabold mb-6">
+                <span class="header-text-gradient">قصتي</span>
+            </h1>
+            <p class="text-3xl sm:text-4xl font-bold text-gray-700 mb-8">رحلة من الشغف والإبداع</p>
+            <p class="mt-4 text-gray-700 max-w-3xl mx-auto leading-relaxed text-xl">
+                أنا أحمد عماد، شاب عنده 23 سنة وشغال صانع محتوى، بس دي مش خبرتي الوحيدة ولا الأولى. علشان كده هبدأ
+                أحكيلك عني من 7 سنين تقريبًا، وقبل ما تستغرب وتسأل أيوا وقتها كان عندي لسة 16 سنة.
+            </p>
+        </header>
+
+        <section class="mb-20 section-container">
+            <h2 class="creative-section-title text-4xl sm:text-5xl font-bold text-gray-800 mx-auto">المحطات الرئيسية في
+                رحلتي</h2>
+            <div class="timeline">
+
+                <div class="timeline-container left">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2018 : 2019</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <img src="assets/1.png">
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            وقتها كنت لسة مراهق عنده 16 سنة وعنده جهاز كومبيوتر قديم ووصلة نت. ومع شوية سيرش وفيديوهات
+                            على اليوتيوب، وكأي شاب في السن ده قررت إني عايز أبقى مشهور وأصور فيديوهات وأقدم محتوى.
+                            وبالفعل حاولت وبدأت أصور كام فيديو كده (لكن الحمد لله منزلتهمش) لأني اكتشفت من بدري إن عندي
+                            مشكلتين: الأولى وهي إني معنديش محتوى أقدمه أو قيمة ما أقدر أقدمها، والمشكلة الثانية وهي إني
+                            مش بفهم في الإيديت ولا في الديزاين. ومن هنا بدأت أحاول أحل المشاكل دي، بدأت أسيرش وأدور على
+                            محتوى أقدمه وفي نفس الوقت بدأت أتعلم الديزاين والإيديت فيديوهات على اليوتيوب. وبالفعل عملت
+                            ده، أول حاجة لقيت كذا نوع محتوى أقدر أقدمه ولكني كان عندي إحساس إني معنديش المعرفة الكافية
+                            ولا الخبرة في المحتوى ده، وفي كتير غيري وأعلم مني بيقدموا نفس المحتوى. وهنا عطلت تاني، واللي
+                            زود الأمر إني كنت شايف إن فيديوهات اليوتيوب للإيديت والديزاين ما كانتش كافية علشان ترضي
+                            فضولي ولا تخليني حد محترف، فقررت أنزل كورس علشان أتعلم الجرافيك. وبالفعل بعد شهور اتعلمت
+                            الجرافيك وبدأت أشتغل جرافيك ديزاين، ووقتها عملت أول فلوس من صناعة المحتوى وهي 140 جنيه (كان
+                            كتابة وديزاين عدد 3 بوستات لأكونت على الفيس بوك). وكملت فترة طويلة كـ جرافيك ديزاينر وبقيت
+                            استلم شغل فريلانس مختلف، ولكن فضولي ناحية صناعة المحتوى موقفش هنا وكنت لسة بحاول ألاقي حاجة
+                            أحبها وأقدمها، ولكني كنت لسة شايف إني معنديش العلم الكافي اللي ممكن أقدمه.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2020 : 2021</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <p>مكان للصورة الكرتونية (مقاس 2:3) لهذه الفترة</p>
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            فترة الكورونا وانتقالي من المنوفية لـ 6 أكتوبر: وطبعًا زي ما كلنا اتأذينا في الظروف وفترة
+                            الكورونا والشغل وقف، ورغم إن دي كانت الفترة الذهبية لصناعة المحتوى، ولكن زي كل مرة وكنت شايف
+                            إني معنديش الـ Knowledge الكافية اللي ممكن اطلع أقدمها، وخصوصًا إني عايز أقدم حاجة ذات قيمة
+                            ومفيدة. وخلص الحظر ودخلت ثانوية عامة، وهنا وقفت كل الشغل وركزت في الثانوية. بعد ما خلصت
+                            الثانوية ودخلت الكلية، والطبيعي إن شاب عاشق للتكنولوجيا قررت أدرس Computer Science، ومع
+                            بداية الدراسة بدأت أرجع تاني للجرافيك ديزاين وبدأت أشتغل فريلانسر بجانب الدراسة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2022 : 2023</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <p>مكان للصورة الكرتونية (مقاس 2:3) لهذه الفترة</p>
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            هنا اكتشفت شغف جديد وهو البرمجة، هو ما كانش جديد أوي لأني حاولت قبل كده لكن حسيت الأمر صعب،
+                            لكن مع الدراسة الأكاديمية والتعمق في تفاصيل المجال صحي فيا شوية شغف خلوني أسيب كل حاجة وأركز
+                            فيه. وبالفعل سيبت مجال الجرافيك وصناعة المحتوى وقعدت سنتين مركز فقط في الكودينج، وخدت كورسات
+                            ودرست أساسيات وبالفعل اتخصصت في مجال الـ Mobile Application وأنا لسة في سنة تانية وبدأت
+                            أشتغل على مشاريع حقيقية.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2024 : 2025</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <p>مكان للصورة الكرتونية (مقاس 2:3) لهذه الفقرة</p>
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            وتكملة لرحلة الكودينج جمعت تيم وقررت أدخل مسابقة تحت تنظيم Google & Gemini وده كان أهم جزء
+                            في مجالي وهو إني لما قررت أدخل المسابقة دي كانت فكرة المشروع اسمها “What IF?” وهو عبارة عن
+                            app بيسأل اليوزر كذا سؤال عن لاعب كورة أو فيلم على حسب اختيار اليوزر، وبعد ما بتجاوب على
+                            الكام سؤال بيقول بكتابة قصة عن طريق الذكاء الاصطناعي عن مدى تأثير تغيير القرارات دي في حياة
+                            لاعب الكورة وعلى مسيرته أو على نهاية الفيلم. وهنا لاحظت حاجة مهمة أوي إن كانت متعتي وشغفي في
+                            المسابقة دي ما كانتش الكودينج ولا الـ AI ولا المسابقة، ولكن كانت متعتي الأكبر هو في القصص
+                            اللي بتتكتب وفكرة المشروع، واللي خلاني أرجع أفكر تاني في الكتابة وصناعة المحتوى.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2024 : 2025</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <p>مكان للصورة الكرتونية (مقاس 2:3) لهذه الفقرة</p>
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            ولكن قبل ما أرجع أفكر وأقرر هعمل إيه وقبل حتى ظهور نتيجة المسابقة (واللي بالمناسبة مكسبناش
+                            فيها لو كنت مهتم تعرف يعني) حصلت لي أكبر مأساة في حياتي وهي وفاة والدي، واللي دخلتني في حالة
+                            اكتئاب لشهور وحالة من الجمود وعدم القدرة على إني أعمل أي حاجة. وقعدت شهور مش بكتب سطر كود
+                            واحد، وبدأت أخرج وأتعافى شوية من حالة الاكتئاب دي لما قررت أكتب اللي حاسس بيه، ولقيتني بكتب
+                            اللي حاسس بيه عن طريق مجموعة رسائل موجهة لوالدي رحمه الله عليه، ودي كانت الحاجة الوحيدة اللي
+                            ما كانش عندي مشكلة أعملها وقتها. وبعد شوية من تفكير وتعافي قررت إني هرجع تاني ولكن هرجع
+                            لحاجة بحبها وشايف إني شاطر فيها ولكن بطريقة وشكل جديد.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-dot">
+                        <span class="timeline-date">2024 : 2025</span>
+                    </div>
+                    <div class="timeline-content creative-card">
+                        <div class="timeline-image-placeholder">
+                            <p>مكان للصورة الكرتونية (مقاس 2:3) لهذه الفقرة</p>
+                        </div>
+                        <p class="text-gray-700 text-lg mb-4">
+                            وهو إني أكون Content Creator ولكن المرة دي بشكل جديد لأني ما كنتش عايز أحبس نفسي في نوع
+                            محتوى واحدة، ولكن حاسس إن عندي كريتفتي هتساعدني أطلعها في كذا نوع محتوى مختلف لشركات مختلفة.
+                            وقررت أرجع أشتغل كـ فريلانس مرة تانية، وبالفعل بدأ يجي لي عملاء وبدأت أشتغل معاهم وقدرت أعرض
+                            شغلي ده لحد ما وصلت للمحطة اللي أنا فيها دلوقتي وهي إني بقيت content creator في شركة تسويق
+                            وشغال على أكونتات في مجالات مختلفة وبعمل حاجة أنا مبسوط وأنا بعملها.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer
+            class="text-center mt-20 p-8 bg-gradient-to-r from-purple-600 to-fuchsia-700 rounded-3xl shadow-xl section-container">
+            <h2 class="text-4xl font-bold text-white mb-8">يلا بينا نعمل حاجة مذهلة سوا!</h2>
+            <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+                لو بتدور على شريك مبدع يضيف لمسة سحرية لمشاريعك، أو عندك فكرة جامدة محتاجة اللي يحولها لحقيقة، متترددش
+                تتواصل معايا.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:ahmedemadeldeen0@gmail.com" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v7a2 2 0 002 2h14a2 2 0 002-2v-7m-18 0h18">
+                        </path>
+                    </svg>
+                    البريد الإلكتروني
+                </a>
+                <a href="tel:+201013020660" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.135a11.042 11.042 0 005.516 5.516l1.135-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                        </path>
+                    </svg>
+                    رقم الهاتف
+                </a>
+                <a href="https://www.linkedin.com/in/ahmed-emad-eldeen-14-/" target="_blank"
+                    class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.381 1.11-2.5 2.48-2.5s2.48 1.119 2.48 2.5zM.02 24h4.96V8h-4.96V24zM9.54 8c-1.32 0-2.28.79-2.73 1.58V8H4.98v16h4.96v-8.3c0-2.26 1.19-3.79 3.39-3.79 2.11 0 3.38 1.53 3.38 3.79V24h4.96v-8.7c0-4.7-2.9-6.8-6.7-6.8-3.15 0-4.7 2.1-5.5 3.5z">
+                        </path>
+                    </svg>
+                    ملفي على LinkedIn
+                </a>
+                <a href="https://www.behance.net/omdaa" target="_blank" class="creative-contact-btn">
+                    <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M2.5 12c0 5.249 4.251 9.5 9.5 9.5s9.5-4.251 9.5-9.5-4.251-9.5-9.5-9.5-9.5 4.251-9.5 9.5zm19.5 0c0 4.14-3.36 7.5-7.5 7.5s-7.5-3.36-7.5-7.5 3.36-7.5 7.5-7.5 7.5 3.36 7.5 7.5zM12 7.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5zm0 2.5c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2z">
+                        </path>
+                    </svg>
+                    أعمالي على Behance
+                </a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
